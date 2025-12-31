@@ -52,7 +52,7 @@ export default function CafeDetail() {
   useEffect(() => {
     const fetchCafeDetail = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/cafes/${params.id}`);
+        const response = await fetch(`/api/cafes/${params.id}`);
         const data = await response.json();
         if (data.success) {
           setCafe(data.data);
@@ -71,7 +71,7 @@ export default function CafeDetail() {
     e.preventDefault();
     setSubmittingReview(true);
     try {
-      const response = await fetch(`http://localhost:8000/api/cafes/${params.id}/reviews`, {
+      const response = await fetch(`/api/cafes/${params.id}/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ export default function CafeDetail() {
       <div className="relative h-64 md:h-96 w-full">
         {heroPhoto ? (
           <img 
-            src={`http://localhost:8000/storage/${heroPhoto.file_path}`} 
+            src={`/storage/${heroPhoto.file_path}`} 
             className="w-full h-full object-cover"
             alt={cafe.name}
           />
@@ -224,7 +224,7 @@ export default function CafeDetail() {
                   {otherPhotos.map((photo, idx) => (
                     <div key={idx} className="flex-shrink-0 w-40 h-40 rounded-lg overflow-hidden bg-gray-800 border border-gray-800">
                       <img 
-                        src={`http://localhost:8000/storage/${photo.file_path}`} 
+                        src={`/storage/${photo.file_path}`} 
                         className="w-full h-full object-cover"
                         alt={`Suasana ${idx + 1}`}
                       />
@@ -264,7 +264,7 @@ export default function CafeDetail() {
               menuPhotos.map((photo, idx) => (
                 <div key={idx} className="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-800">
                   <img 
-                    src={`http://localhost:8000/storage/${photo.file_path}`} 
+                    src={`/storage/${photo.file_path}`} 
                     className="w-full h-full object-cover"
                     alt="Menu"
                   />

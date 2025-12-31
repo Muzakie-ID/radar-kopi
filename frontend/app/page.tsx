@@ -39,7 +39,7 @@ export default function Home() {
     // Fetch Cafes
     const fetchCafes = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/cafes');
+        const response = await fetch('/api/cafes');
         const data = await response.json();
         if (data.success) {
           setAllCafes(data.data);

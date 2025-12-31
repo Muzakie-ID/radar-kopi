@@ -1,0 +1,48 @@
+services:
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: ngongkrong-backend
+    container_name: ngongkrong-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    networks:
+      - ngongkrong-network
+      - master_db_share
+
+  webserver:
+    image: nginx:alpine
+    container_name: ngongkrong-nginx
+    restart: unless-stopped
+    volumes:
+      - ./backend:/var/www
+      - ./backend/docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - ngongkrong-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: ngongkrong-frontend
+    container_name: ngongkrong-frontend
+    restart: unless-stopped
+    ports:
+      - "8098:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: ""
+    depends_on:
+      - webserver
+    networks:
+      - ngongkrong-network
+
+networks:
+  ngongkrong-network:
+    driver: bridge
+  master_db_share:
+    external: true

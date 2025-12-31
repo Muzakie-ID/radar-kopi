@@ -56,7 +56,7 @@ export default function Map({ cafes, userLocation, center, zoom, className }: Ma
             <div className="min-w-[200px]">
               {cafe.photos && cafe.photos.length > 0 ? (
                 <img 
-                  src={`http://localhost:8000/storage/${cafe.photos[0].file_path}`} 
+                  src={`/storage/${cafe.photos[0].file_path}`} 
                   alt={cafe.name}
                   className="w-full h-32 object-cover rounded-lg mb-2"
                 />
