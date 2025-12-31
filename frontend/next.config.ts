@@ -1,12 +1,9 @@
 import type { NextConfig } from "next";
 
-const backendUrl = process.env.BACKEND_URL || 'http://webserver:80';
+const backendUrl = process.env.BACKEND_URL || (process.env.NODE_ENV === 'production' ? 'http://webserver:80' : 'http://localhost:8000');
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       {
