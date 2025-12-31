@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const backendUrl = process.env.BACKEND_URL || 'http://webserver:80';
+
 const nextConfig: NextConfig = {
   output: "standalone",
   eslint: {
@@ -31,11 +33,11 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://webserver:80/api/:path*',
+        destination: `${backendUrl}/api/:path*`,
       },
       {
         source: '/storage/:path*',
-        destination: 'http://webserver:80/storage/:path*',
+        destination: `${backendUrl}/storage/:path*`,
       },
     ];
   },
