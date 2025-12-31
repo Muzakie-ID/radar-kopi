@@ -3,12 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-
-const Map = dynamic(() => import("@/components/Map"), {
-  ssr: false,
-  loading: () => <div className="h-full w-full bg-gray-800 animate-pulse rounded-lg"></div>,
-});
 
 interface Review {
   id: number;
@@ -204,16 +198,6 @@ export default function CafeDetail() {
               <p className="text-sm text-gray-400 leading-relaxed mb-4">
                 {cafe.description || "Belum ada deskripsi detail."}
               </p>
-              
-              {/* Mini Map */}
-              <div className="h-48 w-full rounded-lg overflow-hidden border border-gray-700 relative z-0">
-                <Map 
-                  cafes={[cafe]} 
-                  center={[cafe.latitude, cafe.longitude]} 
-                  zoom={15} 
-                  className="h-full w-full"
-                />
-              </div>
             </div>
 
             {/* Gallery (Other Photos) */}
