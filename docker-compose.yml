@@ -25,6 +25,9 @@ services:
     networks:
       - ngongkrong-network
 
+    ports:
+      - "8088:80"
+
   frontend:
     build:
       context: ./frontend
